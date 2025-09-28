@@ -5,6 +5,15 @@ import TypingIndicator from './TypingIndicator';
 import ChatMessages, { type Message } from './ChatMessages';
 import ChatInput, { type ChatFormData } from './ChatInput';
 
+import popSound from '@/assets/sounds/pop.mp3';
+import notificationSound from '@/assets/sounds/notification.mp3';
+
+const popAudio = new Audio(popSound);
+const notificationAudio = new Audio(notificationSound);
+
+popAudio.volume = 0.2;
+notificationAudio.volume = 0.2;
+
 type ChatResponse = {
   message: string;
 };
@@ -18,6 +27,7 @@ const ChatBot = () => {
 
   const onSubmit = async ({ prompt }: ChatFormData) => {
     try {
+      popAudio.play();
       setError(null);
       setIsBotTyping(true);
       setMessages((prev) => [...prev, { content: prompt, role: 'user' }]);
@@ -29,6 +39,7 @@ const ChatBot = () => {
 
       setMessages((prev) => [...prev, { content: data.message, role: 'bot' }]);
       setIsBotTyping(false);
+      notificationAudio.play();
     } catch (error) {
       setError('Something went wrong. Please try again.');
       console.error(error);
