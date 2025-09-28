@@ -1,6 +1,6 @@
 # ai-powered-app
 
-# WonderWorld Theme Park Chatbot
+# AI Chatbot - WonderWorld Theme Park
 
 This project includes a customer support chatbot designed specifically for WonderWorld, a premier theme park destination.
 
